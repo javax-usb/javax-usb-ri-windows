@@ -1,0 +1,15 @@
+
+TARGETNAME=javaxusb
+TARGETTYPE=DRIVER
+TARGETPATH=obj
+
+DRIVERTYPE=WDM
+
+TARGETLIBS=$(SDK_LIB_PATH)\usbd.lib
+
+SOURCES= \
+	JavaxUsbUtil.c \
+	JavaxUsbPower.c \
+	JavaxUsbPnP.c \
+	JavaxUsb.c
+

@@ -1,0 +1,70 @@
+
+[Version]
+; Hopefully this will work on all 'doze versions
+Signature="$Chicago$"
+Class=USB
+ClassGUID=%USB_GUID%
+Provider=%AuthorName%
+DriverVer=03/16/2003,0.0.1
+
+[Manufacturer]
+javaxusb_Models
+
+[javaxusb_Models]
+javaxusb_Model=javaxusb_Install,USB\CLASS_09
+
+;[DefaultInstall]
+[javaxusb_Install]
+CopyFiles=@javaxusb.sys
+AddReg=javaxusb_Reg
+
+;[DefaultInstall.Services]
+[javaxusb_Install.Services]
+AddService=javaxusb,,javaxusb_Service_Inst
+
+[javaxusb_Service_Inst]
+DisplayName=%JavaxUsb_DisplayName%
+Description=%JavaxUsb_Description%
+ServiceType=%SERVICE_KERNEL_DRIVER%
+StartType=%SERVICE_SYSTEM_START%
+ErrorControl=%SERVICE_ERROR_NORMAL%
+ServiceBinary=%12%\javaxusb.sys
+
+[javaxusb_Reg]
+;HKLM,%device_ID%,"UpperFilters",0x00010008,javaxusb.sys
+HLR,,"UpperFilters",0x00010008,javaxusb.sys
+
+[SourceDisksNames]
+1="source dir"
+
+[SourceDisksFiles]
+;FIXME - remove the obj directory
+javaxusb.sys=1,objchk_w2k_x86\i386
+
+[DestinationDirs]
+DefaultDestDir=12
+
+[Strings]
+USB_GUID={36fc9e60-c465-11cf-8056-444553540000}
+AuthorName="Dan Streetman <ddstreet@ieee.org>"
+JavaxUsb_DisplayName="javax.usb"
+JavaxUsb_Description="Java-USB controller"
+javaxusb_ids="JavaxUsb controlled devices"
+device_ID=SYSTEM\CurrentControlSet\Enum\USB\CLASS_09
+
+;See ntddk.h and/or wdm.h for these.
+SERVICE_KERNEL_DRIVER=0x1
+SERVICE_FILE_SYSTEM_DRIVER=0x2
+SERVICE_WIN32_OWN_PROCESS=0x10
+SERVICE_WIN32_SHARE_PROCESS=0x20
+
+SERVICE_BOOT_START=0x0
+SERVICE_SYSTEM_START=0x1
+SERVICE_AUTO_START=0x2
+SERVICE_DEMAND_START=0x3
+SERVICE_DISABLED=0x4
+
+SERVICE_ERROR_IGNORE=0x0
+SERVICE_ERROR_NORMAL=0x1
+SERVICE_ERROR_SEVERE=0x2
+SERVICE_ERROR_CRITICAL=0x3

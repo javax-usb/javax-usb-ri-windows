@@ -1,0 +1,41 @@
+
+The JCP web site is: http://jcp.org
+The JSR80 project web site is http://javax-usb.org
+
+****************
+* Requirements *
+****************
+
+Windows DDK   http://www.microsoft.com/whdc/ddk/winddk.mspx
+              Note that this was created using the Windows 2000 DDK.
+              The Windows XP DDK and/or Windows 2003 Server DDK may not work.
+              Additionally, this code was written and tested for/on Windows 2000.
+
+Java          Standard Edition version 1.2 or greater - Micro Edition has not been tested but may work
+ANT           http://jakarta.apache.org/ant (make sure to get the optional.jar file!)
+
+*********
+* Build *
+*********
+
+The ANT tool uses XML buildfiles to create the project.  Run ant in
+the toplevel directory to list all available targets.  You should use
+a build environment, so ANT can use the DDK build tools to create the
+native library.
+
+****************
+* Installation *
+****************
+
+Add lib/jsr80_ri_windows.jar to your CLASSPATH.
+Navigate to jni/dll/ and right-click on JavaxUsb.inf, then choose "Install"
+
+*********
+* Notes *
+*********
+
+This is INCOMPLETE!  So far, the JavaxUsb.dll successfully allows javax.usb
+to enumerate all connected devices.  No hotplug support is included yet.
+A "service" (i.e. kernel driver) must be created to allow actual communication.
+This is PRE-ALPHA and not fully functional!  Feel free to discuss this on the
+mailing list, but please don't bother telling me that it doesn't work.  I know!

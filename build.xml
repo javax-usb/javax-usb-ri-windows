@@ -1,0 +1,176 @@
+
+<!-- JSR80 Windows Implementation -->
+
+<project name="JSR80 Windows Implementation" default="help">
+
+	<!-- User overrides from environment -->
+	<!-- Note these depend on ANT not overwriting preset variables -->
+	<property environment="Jsr80Env"/>
+
+	<property name="Jsr80Env.JSR80_WINDOWS_JARFILE" value="jsr80_windows.jar"/>
+
+	<property name="Jsr80Env.JSR80_WINDOWS_SRC_DIR" value="src"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_DEST_DIR" value="${Jsr80Env.JSR80_WINDOWS_SRC_DIR}"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_LIB_DIR" value="lib"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_JNI_SRC_DIR" value="jni"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_JNI_DEST_DIR" value="${Jsr80Env.JSR80_WINDOWS_LIB_DIR}"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_JARFILE_DIR" value="${Jsr80Env.JSR80_WINDOWS_LIB_DIR}"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_PROPERTIES_DIR" value="${Jsr80Env.JSR80_WINDOWS_LIB_DIR}"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_JDOC_DIR" value="docs/jdoc"/>
+
+	<property name="Jsr80Env.JSR80_WINDOWS_DEBUG" value="yes"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_OPTIMIZE" value="yes"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_DEPRECATION" value="yes"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_VERBOSE" value="no"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_QUIET" value="no"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_COMPRESS" value="yes"/>
+
+	<property name="Jsr80Env.JSR80_WINDOWS_JDOC_WINDOWTITLE" value="JavaDOC for javax.usb Windows Implementation"/>
+	<property name="Jsr80Env.JSR80_WINDOWS_JDOC_DOCTITLE" value=""/>
+	<property name="Jsr80Env.JSR80_WINDOWS_JDOC_BOTTOM" value=""/>
+	<property name="Jsr80Env.JSR80_WINDOWS_JDOC_HEADER" value=""/>
+	<property name="Jsr80Env.JSR80_WINDOWS_JDOC_FOOTER" value=""/>
+
+	<property name="Jsr80Env.JSR80_WINDOWS_JDOC_PATH" value=""/>
+
+	<!-- Variables -->
+	<property name="jsr80.windows.dest.dir" value="${Jsr80Env.JSR80_WINDOWS_DEST_DIR}"/>
+	<property name="jsr80.windows.src.dir" value="${Jsr80Env.JSR80_WINDOWS_SRC_DIR}"/>
+	<property name="jsr80.windows.lib.dir" value="${Jsr80Env.JSR80_WINDOWS_LIB_DIR}"/>
+	<property name="jsr80.windows.jdoc.dir" value="${Jsr80Env.JSR80_WINDOWS_JDOC_DIR}"/>
+
+	<property name="jsr80.windows.debug" value="${Jsr80Env.JSR80_WINDOWS_DEBUG}"/>
+	<property name="jsr80.windows.optimize" value="${Jsr80Env.JSR80_WINDOWS_OPTIMIZE}"/>
+	<property name="jsr80.windows.deprecation" value="${Jsr80Env.JSR80_WINDOWS_DEPRECATION}"/>
+	<property name="jsr80.windows.verbose" value="${Jsr80Env.JSR80_WINDOWS_VERBOSE}"/>
+	<property name="jsr80.windows.quiet" value="${Jsr80Env.JSR80_WINDOWS_QUIET}"/>
+	<property name="jsr80.windows.compress" value="${Jsr80Env.JSR80_WINDOWS_COMPRESS}"/>
+
+	<property name="jsr80.windows.jni.src.dir" value="${Jsr80Env.JSR80_WINDOWS_JNI_SRC_DIR}"/>
+	<property name="jsr80.windows.jni.dest.dir" value="${Jsr80Env.JSR80_WINDOWS_JNI_DEST_DIR}"/>
+	<property name="jsr80.windows.jni.library" value="JavaxUsb.dll"/>
+	<property name="jsr80.windows.properties" value="javax.usb.properties"/>
+	<property name="jsr80.windows.properties.dir" value="${Jsr80Env.JSR80_WINDOWS_PROPERTIES_DIR}"/>
+	<property name="jsr80.windows.jarfile" value="${Jsr80Env.JSR80_WINDOWS_JARFILE}"/>
+	<property name="jsr80.windows.jarfile.dir" value="${Jsr80Env.JSR80_WINDOWS_JARFILE_DIR}"/>
+
+	<property name="jsr80.windows.jdoc.windowtitle" value="${Jsr80Env.JSR80_WINDOWS_JDOC_WINDOWTITLE}"/>
+	<property name="jsr80.windows.jdoc.doctitle" value="${Jsr80Env.JSR80_WINDOWS_JDOC_DOCTITLE}"/>
+	<property name="jsr80.windows.jdoc.bottom" value="${Jsr80Env.JSR80_WINDOWS_JDOC_BOTTOM}"/>
+	<property name="jsr80.windows.jdoc.header" value="${Jsr80Env.JSR80_WINDOWS_JDOC_HEADER}"/>
+	<property name="jsr80.windows.jdoc.footer" value="${Jsr80Env.JSR80_WINDOWS_JDOC_FOOTER}"/>
+	<property name="jsr80.windows.jdoc.verbose" value="no"/>
+	<property name="jsr80.windows.jdoc.version" value="yes"/>
+	<property name="jsr80.windows.jdoc.author" value="no"/>
+	<property name="jsr80.windows.jdoc.nodeprecated" value="no"/>
+	<property name="jsr80.windows.jdoc.nodeprecatedlist" value="no"/>
+	<property name="jsr80.windows.jdoc.failonerror" value="yes"/>
+	<property name="jsr80.windows.jdoc.public" value="yes"/>
+	<property name="jsr80.windows.jdoc.protected" value="yes"/>
+	<property name="jsr80.windows.jdoc.package" value="yes"/>
+	<property name="jsr80.windows.jdoc.private" value="no"/>
+
+	<property name="jsr80.windows.jdoc.path" value="${Jsr80Env.JSR80_WINDOWS_JDOC_PATH}"/>
+
+	<!-- Show help -->
+	<target name="help">
+		<echo message="Buildfile for javax.usb Windows Implementation"/>
+		<echo message=""/>
+		<echo message="Targets:"/>
+		<echo message=""/>
+		<echo message="  all                == clean compile jars jdoc"/>
+		<echo message="  clean              Clean everything"/>
+		<echo message="  compile            Compile all classes"/>
+		<echo message="  help               Show this help"/>
+		<echo message="  jars               Create JAR files"/>
+		<echo message="  jdoc               Create JavaDOC"/>
+		<echo message=""/>
+	</target>
+
+	<!-- clean, compile, jars, jdoc -->
+	<target name="all" depends="clean,compile,jars,jdoc"/>
+
+	<!-- Compile classfiles and create the native library -->
+	<target name="compile">
+		<echo message="Compiling class files."/>
+		<mkdir dir="${jsr80.windows.dest.dir}"/>
+		<javac
+			srcdir="${jsr80.windows.src.dir}"
+			destdir="${jsr80.windows.dest.dir}"
+			debug="${jsr80.windows.debug}"
+			optimize="${jsr80.windows.optimize}"
+			deprecation="${jsr80.windows.deprecation}"
+			verbose="${jsr80.windows.verbose}"
+			failonerror="yes"/>
+
+		<echo message="Compiling JNI library."/>
+		<javah
+			class="com.ibm.jusb.os.windows.JavaxUsb"
+			destdir="${jsr80.windows.jni.src.dir}/dll"
+			verbose="${jsr80.windows.verbose}"
+			classpath="${java.class.path}:${jsr80.windows.src.dir}"/>
+
+		<exec executable="build" dir="${jsr80.windows.jni.src.dir}" failonerror="yes">
+		</exec>
+	</target>
+
+	<!-- Creates the source and class JAR files and moves JNI library -->
+	<target name="jars" depends="compile">
+		<echo message="Creating JAR files."/>
+		<mkdir dir="${jsr80.windows.jarfile.dir}"/>
+		<jar jarfile="${jsr80.windows.jarfile.dir}/${jsr80.windows.jarfile}" compress="${jsr80.windows.compress}">
+			<fileset dir="${jsr80.windows.dest.dir}" includes="**/*.class"/>
+			<fileset dir="${jsr80.windows.properties.dir}" includes="${jsr80.windows.properties}"/>
+		</jar>
+
+<!-- not implemented yet
+		<mkdir dir="${jsr80.windows.lib.dir}"/>
+		<copy
+			file="${jsr80.windows.jni.src.dir}/${jsr80.windows.jni.library}"
+			todir="${jsr80.windows.jni.dest.dir}"
+			overwrite="yes"/>
+-->
+	</target>
+
+	<!-- Build JavaDOC -->
+	<target name="jdoc">
+		<echo message="Creating JavaDOC."/>
+		<mkdir dir="${jsr80.windows.jdoc.dir}"/>
+		<javadoc
+			packagenames="javax.usb.*,com.ibm.jusb.*"
+			sourcepath="${jsr80.windows.src.dir}:${jsr80.windows.jdoc.path}"
+			destdir="${jsr80.windows.jdoc.dir}"
+			verbose="${jsr80.windows.verbose}"
+			Public="${jsr80.windows.public}"
+			Protected="${jsr80.windows.protected}"
+			Package="${jsr80.windows.package}"
+			Private="${jsr80.windows.private}"
+			Version="${jsr80.windows.version}"
+			Author="${jsr80.windows.author}"
+			windowtitle="${jsr80.windows.jdoc.windowtitle}"
+			doctitle="${jsr80.windows.jdoc.doctitle}"
+			bottom="${jsr80.windows.jdoc.bottom}"
+			header="${jsr80.windows.jdoc.header}"
+			footer="${jsr80.windows.jdoc.footer}"
+			nodeprecated="${jsr80.windows.jdoc.nodeprecated}"
+			nodeprecatedlist="${jsr80.windows.jdoc.nodeprecatedlist}"
+			failonerror="${jsr80.windows.jdoc.failonerror}"
+		/>
+	</target>
+
+	<!-- Cleans everything -->
+	<target name="clean">
+		<echo message="Cleaning everything."/>
+		<delete verbose="${jsr80.windows.verbose}" quiet="${jsr80.windows.quiet}" failonerror="false">
+			<fileset dir="${jsr80.windows.dest.dir}" includes="com/ibm/jusb/**/*.class"/>
+			<fileset dir="${jsr80.windows.jarfile.dir}" includes="${jsr80.windows.jarfile}"/>
+			<fileset dir="${jsr80.windows.jni.dest.dir}" includes="${jsr80.windows.jni.library}"/>
+			<fileset dir="${jsr80.windows.jdoc.dir}"/>
+		</delete>
+
+		<exec executable="build" dir="${jsr80.windows.jni.src.dir}" failonerror="yes">
+			<arg line="-c -C -q"/>
+		</exec>
+	</target>
+
+</project>
